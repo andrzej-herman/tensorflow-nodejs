@@ -1,0 +1,14 @@
+{
+	"name": "projekt_do_pracy_magisterskiej",
+	"version": "1.0.0",
+	"description": "AI project based on TensorFlow.js. Developed as a practical part of my master thesis.",
+	"author": "Andrzej Herman",
+	"license": "MIT License",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/andrzej-herman/projekt_do_pracy_magisterskiej.git"
+	},
+	"dependencies": {
+		"express": "latest"
+	}
+}

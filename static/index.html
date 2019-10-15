@@ -125,8 +125,41 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h1>Znajdywacz równania</h1>
+                    <h1>Rozpoznawanie obrazów</h1>
                     <div class="separator mb-5"></div>
+
+                    <!-- Paste -->
+                    <div class="row">
+                            <div class="col-12">
+                                <div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2" style="display:none">
+                                    Ładowanie modelu
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9">
+                                <input id="image-selector" class="form-control border-0" type="file">
+                            </div>
+                            <div class="col-3">
+                                <button id="predict-button" class="btn btn-primary btn-lg btn-block float-right">ROZPOZNAJ OBRAZ</button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="ml-3">Wyniki rozpoznania</h2>
+                                <ol id="prediction-list"></ol>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="ml-3">Wybrany obraz</h2>
+                                <img id="selected-image" class="ml-3" src="" />
+                            </div>
+                        </div>
+
+
                 </div>
             </div>
         </div>
@@ -150,7 +183,7 @@
                                 <a href="#" class="btn-link">TensorFlow.js</a>
                             </li>
                             <li class="breadcrumb-item mb-0">
-                                <a href="#" class="btn-link">GitHub - kod źródłowy</a>
+                                <a href="https://github.com/andrzej-herman/projekt_do_pracy_magisterskiej" target="_blank" class="btn-link">Kod źródłowy (GitHub)</a>
                             </li>
                         </ul>
                     </div>
@@ -162,10 +195,14 @@
     <!-- UI Dore Scripts -->
     <script src="ui/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="ui/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="ui/js/vendor/perfect-scrollbar.min.js"></script>
+    <!-- <script src="ui/js/vendor/perfect-scrollbar.min.js"></script> -->
     <script src="ui/js/vendor/mousetrap.min.js"></script>
     <script src="ui/js/dore.script.js"></script>
     <script src="ui/js/scripts.single.theme.js"></script>
+    <!-- TensorFlow.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <!-- Image Net Classes -->
+    <script src="imagenet_classes.js"></script>
+    <script src="predict.js"></script>
 </body>
-
 </html>
