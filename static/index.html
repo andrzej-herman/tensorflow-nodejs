@@ -122,7 +122,7 @@
     </div>
 
     <main>
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-bottom: 50px;">
             <div class="row">
                 <div class="col-12">
                     <h1>Rozpoznawanie obrazów</h1>
@@ -131,7 +131,7 @@
                     <!-- Paste -->
                     <div class="row">
                             <div class="col-12">
-                                <div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2" style="display:none">
+                                <div class="progress progress-bar progress-bar-striped progress-bar-animated mb-2"> <!-- style="display:none" -->
                                     Ładowanie modelu
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="ml-3">Wybrany obraz</h2>
-                                <img id="selected-image" class="ml-3" src="" />
+                                <img id="selected-image" class="ml-3" src=""/>
                             </div>
                         </div>
 
@@ -165,12 +165,12 @@
         </div>
     </main>
 
-    <footer class="page-footer">
+    <footer id="herman-footer" class="page-footer">
         <div class="footer-content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-sm-6">
-                        <p class="mb-4 text-muted herman-footer-text">Projekt zrealizowany na potrzeby pracy magisterskiej pt: 
+                        <p class="mb-4 herman-footer-text">Projekt zrealizowany na potrzeby pracy magisterskiej pt: 
                             "Wpływ wybranych sposobów modyfikacji wag na efektywność działania jednokierunkowej sieci neuronowej" 
                             pod kierownictwem prof. Andrzeja Cadera <br/>Społeczna Akademia Nauk @ 2020</p>
                     </div>
@@ -192,6 +192,9 @@
         </div>
     </footer>
 
+    <!-- TensorFlow.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0"></script>
+
     <!-- UI Dore Scripts -->
     <script src="ui/js/vendor/jquery-3.3.1.min.js"></script>
     <script src="ui/js/vendor/bootstrap.bundle.min.js"></script>
@@ -199,8 +202,7 @@
     <script src="ui/js/vendor/mousetrap.min.js"></script>
     <script src="ui/js/dore.script.js"></script>
     <script src="ui/js/scripts.single.theme.js"></script>
-    <!-- TensorFlow.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+
     <!-- Image Net Classes -->
     <script src="imagenet_classes.js"></script>
     <script src="predict.js"></script>
