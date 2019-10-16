@@ -48,3 +48,39 @@ body.show-spinner::after {
 	font-size: 14px;
 	font-weight: bold;
 }
+
+.herman-loader {
+	background: #000;
+	opacity: 0.6;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 27%;
+	padding-left: 45%;
+}
+
+.herman-loader-info {
+	color: #fff;
+	position: absolute;
+}
+
+#predict-loader {
+	background: #000;
+	opacity: 0.6;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 27%;
+	padding-left: 45%;
+}
+
+#predict-loader-info {
+	color: #fff;
+	position: absolute;
+}
