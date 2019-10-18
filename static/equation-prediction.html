@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <meta name="description" content="Projekt AI wykorzystujący TensorFlow.js. Część praktyczna mojej pracy magisterskiej />
+        <meta name="description" content="Projekt AI wykorzystujący TensorFlow.js. Część praktyczna mojej pracy magisterskiej" />
         <meta name="keywords" content="ai, artificial intelligence, tensorflow.js, master thesis" />
         <meta name="author" content="Andrzej Herman" />
         <link rel="icon" href="ui/images/ah.png">
@@ -41,10 +41,10 @@
                     <div class="site-nav">
                         <!-- Main menu -->
                         <ul class="header-main-menu" id="header-main-menu">
-                            <li><a class="active" href="#"><i class="fas fa-play-circle"></i> Start</a></li>
+                            <li><a href="index.html"><i class="fas fa-play-circle"></i> Start</a></li>
                             <li><a href="project-description.html"><i class="fas fa-sticky-note"></i> Opis projektu</a></li>
                             <li><a href="image-recognition.html"><i class="fas fa-images"></i> Rozpoznawanie obrazów</a></li>
-                            <li><a href="equation-prediction.html"><i class="fas fa-chart-line"></i> Predykcja wykresu funkcji</a></li>
+                            <li><a class="active" href="#"><i class="fas fa-chart-line"></i> Predykcja wykresu funkcji</a></li>
                             <li><a href="https://github.com/andrzej-herman/projekt_do_pracy_magisterskiej" target="_blank"><i class="fas fa-code-branch"></i> Kod źródłowy projektu</a></li>
                         </ul> 
                         <!-- /Main menu -->
@@ -67,30 +67,21 @@
             <!-- Main Content -->
             <div class="content-pages">
                 <div class="sub-home-pages">
-                    <!-- AI Showcase -->
-                    <section id="start" class="sub-page start-page">
+                    <!-- Image Recognition -->
+                    <section class="sub-page">
                         <div class="sub-page-inner">
-                            <div class="mask"></div>
-                            <div id="particles-js"></div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="title-block">
-                                        <h2 style="font-size: 3.5em; margin-bottom: 10px">Projekt AI do pracy magisterskiej</h2>
-                                        <div class="type-wrap">
-                                            <div class="typed-strings">
-                                                <span>Rozpoznawanie obrazów</span>
-                                                <span>Predykcja kształtu wykresu równania</span>
-                                                <span>Sztuczna inteligencja</span>
-                                                <span>Sztuczne sieci neuronowe</span>
-                                            </div>
-                                            <span class="typed"></span>
-                                        </div>
+                            <div class="section-title">
+                                <div class="main-title">
+                                    <div class="title-main-page">
+                                        <h4>Predykcja wykresu funkcji</h4>
+                                        <p style="text-transform: none;">Równanie postaci f(x) = ax<sup>3</sup> + bx<sup>2</sup> + cx + d</p>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </section>
-                    <!-- / AI Showcase -->
+                    <!-- / Image Recognition -->
                 </div>
             </div>
             <!-- / Main Content -->
@@ -109,9 +100,6 @@
         <script src="ui/js/jquery.isotope.min.js"></script>
         <!-- Wow Animation -->
         <script src="ui/js/wow.min.js"></script>  
-        <!-- particles -->
-        <script src="ui/js/particles.min.js"></script> 
-        <script src="ui/js/app.js"></script> 
         <!-- Main Script -->
         <script src="ui/js/script.js"></script>
     </body>

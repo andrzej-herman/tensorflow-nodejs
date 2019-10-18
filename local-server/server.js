@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
 // wskazuję serwer plików z których korzysta aplikacja (w katalogiu: static)
 app.use(express.static('../static'));
 
-// ustawiam port nasłuchiwania na numer 1973 i loguję start servera express node
-app.listen(1973, function() {
-	console.log('Serving static on port: 1973 started ...');
+// ustawiam port nasłuchiwania na numer 3001 i loguję start servera express node
+app.listen(3001, function() {
+	console.log('Serving static on port: 3001 started ...');
 });

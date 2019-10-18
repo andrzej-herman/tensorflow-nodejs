@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="description" content="Projekt AI wykorzystujący TensorFlow.js. Część praktyczna mojej pracy magisterskiej />
+        <meta name="keywords" content="ai, artificial intelligence, tensorflow.js, master thesis" />
+        <meta name="author" content="Andrzej Herman" />
+        <link rel="icon" href="ui/images/ah.png">
+        <title>Andrzej Herman | Projekt AI</title>
+        <link rel="stylesheet" href="ui/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="ui/css/animate.min.css" type="text/css">
+        <link rel="stylesheet" href="ui/css/owl.carousel.min.css" type="text/css">
+        <link rel="stylesheet" href="ui/css/lightcase.min.css" type="text/css">
+        <link rel="stylesheet" href="ui/css/style.css" type="text/css">
+    </head>
+    <body>
+        <!-- Preloader -->
+        <div id="preloader">
+            <div id="preloader-circle">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!-- / Preloader -->
+
+        <div class="wrapper-page">
+            <!-- Left Navigation -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="profile-picture-block">
+                        <div class="my-photo">
+                            <img src="ui/images/avatar.jpeg" class="img-fluid" alt="image">
+                        </div>
+                    </div>
+                    <div class="site-title-block">
+                        <div class="site-title">Andrzej Herman</div>
+						<span style="color: #1b9ae3">http://ai.aherman.pl</span>
+                    </div>
+                    <div class="site-nav">
+                        <!-- Main menu -->
+                        <ul class="header-main-menu" id="header-main-menu">
+                            <li><a href="index.html"><i class="fas fa-play-circle"></i> Start</a></li>
+                            <li><a class="active" href="#"><i class="fas fa-sticky-note"></i> Opis projektu</a></li>
+                            <li><a href="image-recognition.html"><i class="fas fa-images"></i> Rozpoznawanie obrazów</a></li>
+                            <li><a href="equation-prediction.html"><i class="fas fa-chart-line"></i> Predykcja wykresu funkcji</a></li>
+                            <li><a href="https://github.com/andrzej-herman/projekt_do_pracy_magisterskiej" target="_blank"><i class="fas fa-code-branch"></i> Kod źródłowy projektu</a></li>
+                        </ul> 
+                        <!-- /Main menu -->
+                        <div class="copyrights">© 2019 Społeczna Akademia Nauk</div>
+                    </div>
+                </div>
+            </header>
+            <!-- / Left Navigation -->
+
+            <!-- Mobile Navigation -->
+            <div class="responsive-header">
+                <div class="responsive-header-name">
+                    <img class="responsive-logo" src="ui/images/avatar.jpeg" alt="" />
+                    Andrzej Herman
+                </div> 
+                <span class="responsive-icon"><i class="lnr lnr-menu"></i></span>
+            </div>
+            <!-- / Mobile Navigation -->
+
+            <!-- Main Content -->
+            <div class="content-pages">
+                <div class="sub-home-pages">
+                    <!-- Project Desscription -->
+                    <section id="opisprojektu" class="sub-page">
+                        <div class="sub-page-inner">
+                            <div class="section-title">
+                                <div class="main-title">
+                                    <div class="title-main-page">
+                                        <h4>Opis projektu</h4>
+                                        <p style="text-transform: none;">Dlaczego napisałem tę aplikację webową?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-content">
+                                <div class="row pb-30">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <h3>Część praktyczna pracy magisterskiej</h3>
+                                        <span class="about-location"><i class="lnr lnr-map-marker"></i> Społeczna Akademia Nauk w Łodzi</span>
+                                        <p class="about-content" style="text-align: justify;">
+                                            Niniejsza aplikacja jest praktyczną częścią mojej pracy magisterskiej
+                                            pod tytułem: <span style="font-weight: bold">"Wpływ wybranych sposobów modyfikacji wag na efektywność działania jednokierunkowej sieci neuronowej"</span> napisanej pod kierownictwem <span style="font-weight: bold">prof. Andrzeja Cadera</span> w Społecznej Akademii Nauk w Łodzi.
+                                        </p>
+                                        <p class="about-content" style="text-align: justify;">
+                                            Projekt zostanie wykorzystany w pracy dwojako. Moduł rozpoznawania obrazów - jako demonstracja możliwego zastosowania sieci neuronowych we praktyce. Natomiast moduł predykcji wykresu funkcji trzeciego stopnia postaci f(x) = ax<sup>3</sup> + bx<sup>2</sup> + cx + d - jako pole do badania celu pracy, czyli wpływu modyfikacji wag sieci na efektywność jej działania.
+                                        </p>
+                                        <br/>
+                                        <ul class="bout-list-summry row">
+                                            <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                            	<a href="#resume">
+                                                <div class="icon-info">
+                                                    <i class="fas fa-images"></i> 
+                                                </div>
+                                                <div class="details-info">
+                                                    <h6>Rozpoznawanie obrazów</h6>
+                                                    <p>Przejdź do modułu</p>
+                                                </div></a>
+                                            </li>
+                                            <li class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                            	<a href="#portfolio">
+                                                <div class="icon-info">
+                                                    <i class="fas fa-chart-line"></i> 
+                                                </div>
+                                                <div class="details-info">
+                                                    <h6>Predykcja wykresu funkcji trzeciego stopnia</h6>
+                                                    <p>Przejdź do modułu</p>
+                                                </div></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
+                                        <div class="box-img">
+                                            <img src="ui/images/about.png" class="img-fluid" alt="image">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="special-block-bg">
+                                    <div class="section-head">
+                                        <h4>
+                                            <span>Wykorzystane technologie</span>
+                                            <span style="font-weight: bold; font-size: 16px">Z tych narzędzi korzystałem pisząc aplikację<span>
+                                        </h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="services-list">
+
+                                                <div class="service-block">
+                                                    <div class="service-icon">
+                                                        <i class="lnr lnr-code"></i>
+                                                    </div>
+                                                    <div class="service-text">
+                                                        <h4>TensorFlow.js</h4>
+                                                        <p style="text-align: justify;">Do implementacji sieci neuronowych wykorzystałem javascriptową wersję popularnej biblioteki do sztucznej inteligencji - TensorFlow. Za jej pośrednictwem buduję zastosowane w aplikacji modele sieci. Dokładny opis biblioteki znajduje się <a href="https://www.tensorflow.org/js/" target="_blank">tutaj</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="service-block">
+                                                   <div class="service-icon">
+                                                        <i class="lnr lnr-code"></i>
+                                                    </div>
+                                                    <div class="service-text">
+                                                        <h4>Node.js</h4>
+                                                        <p style="text-align: justify;">Bardzo popularne, napisane w języku Javascript środowisko uruchomieniowe aplikacji webowych wykorzystujące silniki Chrome V8 i Javascript. Server express Node.js uruchomiłem na serwerze IIS własnego VPS pod adresem IP: 136.243.117.158.</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                            <div class="services-list">
+
+                                                <div class="service-block">
+                                                  <div class="service-icon">
+                                                        <i class="lnr lnr-code"></i>
+                                                    </div>
+                                                    <div class="service-text">
+                                                        <h4>Modele VGG19 i MobileNet</h4>
+                                                        <p style="text-align: justify;">Modele wykorzystywane do rozpoznawania obrazów. Zbudowane na bazie obrazów z biblioteki ImageNet. Zawierają próbki (wagi) kolorów poszczególnych pikseli z każdego obrazu. Są przetrenowane i gotowe do implementacji.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="service-block">
+                                                  <div class="service-icon">
+                                                        <i class="lnr lnr-code"></i>
+                                                    </div>
+                                                    <div class="service-text">
+                                                        <h4>Themeforest Mulan CSS Template</h4>
+                                                        <p style="text-align: justify;">Szablon CSS firmy Themeforest. Wykorzystałem go do zbudowania graficznej strony interfesju Użytkownika aplikacji. Zawiera predefiniowane układy, komponenty oraz efekty w dostępnych plikach css i js. Zmodyfikowałem go na potrzeby aplikacji.</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- / Project Desscription -->
+                </div>
+            </div>
+            <!-- / Main Content -->
+        </div>
+
+        <!--JS Files-->
+        <script src="ui/js/jquery.min.js"></script>
+        <script src="ui/js/bootstrap.min.js"></script>
+        <!--Owl Coursel-->
+        <script src="ui/js/owl.carousel.min.js"></script>
+        <!-- Typing Text -->
+        <script src="ui/js/typed.min.js"></script> 
+        <!--Images LightCase-->
+        <script src="ui/js/lightcase.min.js"></script>
+        <!-- Portfolio filter -->
+        <script src="ui/js/jquery.isotope.min.js"></script>
+        <!-- Wow Animation -->
+        <script src="ui/js/wow.min.js"></script>  
+        <!-- Main Script -->
+        <script src="ui/js/script.js"></script>
+    </body>
+</html>
