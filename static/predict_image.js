@@ -1,6 +1,6 @@
 // TensorFlow.js - test biblioteki
-// const t1 = tf.tensor([ [ 1, 2, 8 ], [ 3, 4, 2 ] ]);
-// t1.print();
+const t1 = tf.tensor([ [ 1, 2, 8 ], [ 3, 4, 2 ] ]);
+t1.print();
 
 $('#image-selector').change(function() {
 	let reader = new FileReader();
@@ -27,48 +27,103 @@ async function loadModel(name) {
 	model = undefined;
 	// model = await tf.loadModel(`http://136.243.117.158:3001/tfjs-models/${name}/model.json`);
 	model = await tf.loadModel(`http://localhost:3001/tfjs-models/${name}/model.json`);
+	model = await tf.loadModel(`http://localhost:3001/tfjs-models/MobileNet/model.json`);
 	$('#model-loader').hide();
 }
 
-// $('#predict-button').click(async function() {
-// 	let image = $('#selected-image').get(0);
-// 	let modelName = $('#model-selector').val();
-// 	let tensor = preprocessImage(image, modelName);
+$('#predict-button').click(function() {
+	runImageRecognition();
+});
 
-// 	let predictions = await model.predict(tensor).data();
-// 	let top5 = Array.from(predictions)
-// 		.map(function(p, i) {
-// 			return {
-// 				probability: p,
-// 				className: IMAGENET_CLASSES[i]
-// 			};
-// 		})
-// 		.sort(function(a, b) {
-// 			return b.probability - a.probability;
-// 		})
-// 		.slice(0, 5);
+function preprocessImage(image, modelName) {
+	let tensor = tf.fromPixels(image).resizeNearestNeighbor([ 224, 224 ]).toFloat();
 
-// 	$('#prediction-list').empty();
-// 	top5.forEach(function(p) {
-// 		$('#prediction-list').append(`<li>${p.className}: ${p.probability.toFixed(6)}</li>`);
-// 	});
-// });
+	if (modelName === undefined) {
+		return tensor.expandDims();
+	} else if (modelName === 'VGG19') {
+		let meanImageNetRGB = tf.tensor1d([ 123.68, 116.779, 103.939 ]);
+		return tensor.sub(meanImageNetRGB).reverse(2).expandDims();
+	} else if (modelName === 'MobileNet') {
+		let offset = tf.scalar(127.5);
+		return tensor.sub(offset).div(offset).expandDims();
+	} else {
+		throw new Error('Unknown model name');
+	}
+}
 
-// function preprocessImage(image, modelName) {
-// 	let tensor = tf.fromPixels(image).resizeNearestNeighbor([ 224, 224 ]).toFloat();
+async function runImageRecognition() {
+	$('#pred-loader').show();
+	let image = $('#selected-image').get(0);
+	let modelName = $('#model-selector').val();
+	modelName = 'MobileNet';
+	let tensor = preprocessImage(image, modelName);
+	var m = model;
+	let predictions = await model.predict(tensor).data();
+	let top5 = Array.from(predictions)
+		.map(function(p, i) {
+			return {
+				probability: p,
+				percentage: (p * 100).toFixed(4).toString() + ' %',
+				className: IMAGENET_CLASSES[i]
+			};
+		})
+		.sort(function(a, b) {
+			return b.probability - a.probability;
+		})
+		.slice(0, 5);
 
-// 	if (modelName === undefined) {
-// 		return tensor.expandDims();
-// 	} else if (modelName === 'VGG16') {
-// 		let meanImageNetRGB = tf.tensor1d([ 123.68, 116.779, 103.939 ]);
-// 		return tensor.sub(meanImageNetRGB).reverse(2).expandDims();
-// 	} else if (modelName === 'MobileNet') {
-// 		let offset = tf.scalar(127.5);
-// 		return tensor.sub(offset).div(offset).expandDims();
-// 	} else {
-// 		throw new Error('Unknown model name');
-// 	}
-// }
+	showResults(top5);
+	$('#pred-loader').hide();
+}
+
+function getDisplayName(name) {
+	var commas = name.split(',').length - 1;
+	if (commas <= 1) {
+		return name;
+	} else {
+		var parts = name.split(',');
+		return parts[0] + ', ' + parts[1];
+	}
+}
+
+function showResults(results) {
+	var name1 = document.getElementById('res-name-01');
+	var progress1 = document.getElementById('res-progress-01');
+	var percent1 = document.getElementById('res-percent-01');
+	name1.innerHTML = getDisplayName(results[0].className);
+	var dp1 = (results[0].probability * 100).toString().substring(0, 2) + '%';
+	progress1.style.width = dp1;
+	percent1.innerHTML = results[0].percentage;
+	var name2 = document.getElementById('res-name-02');
+	var progress2 = document.getElementById('res-progress-02');
+	var percent2 = document.getElementById('res-percent-02');
+	name2.innerHTML = getDisplayName(results[1].className);
+	var dp2 = (results[1].probability * 100).toString().substring(0, 2) + '%';
+	progress2.style.width = dp2;
+	percent2.innerHTML = results[1].percentage;
+	var name3 = document.getElementById('res-name-03');
+	var progress3 = document.getElementById('res-progress-03');
+	var percent3 = document.getElementById('res-percent-03');
+	name3.innerHTML = getDisplayName(results[2].className);
+	var dp3 = (results[2].probability * 100).toString().substring(0, 2) + '%';
+	progress3.style.width = dp3;
+	percent3.innerHTML = results[2].percentage;
+	var name4 = document.getElementById('res-name-04');
+	var progress4 = document.getElementById('res-progress-04');
+	var percent4 = document.getElementById('res-percent-04');
+	name4.innerHTML = getDisplayName(results[3].className);
+	var dp4 = (results[3].probability * 100).toString().substring(0, 2) + '%';
+	progress4.style.width = dp4;
+	percent4.innerHTML = results[3].percentage;
+	var name5 = document.getElementById('res-name-05');
+	var progress5 = document.getElementById('res-progress-05');
+	var percent5 = document.getElementById('res-percent-05');
+	name5.innerHTML = getDisplayName(results[4].className);
+	var dp5 = (results[4].probability * 100).toString().substring(0, 2) + '%';
+	progress5.style.width = dp5;
+	percent5.innerHTML = results[4].percentage;
+	$('#results-set').show();
+}
 
 // ---------------------------------------------------------------------
 // STARA WERSJA
