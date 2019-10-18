@@ -1,62 +1,26 @@
 // TensorFlow.js - test biblioteki
-const t1 = tf.tensor([ [ 1, 2, 8 ], [ 3, 4, 2 ] ]);
-t1.print();
+// const t1 = tf.tensor([ [ 1, 2, 8 ], [ 3, 4, 2 ] ]);
+// t1.print();
 
-$('#image-selector').change(function() {
-	let reader = new FileReader();
-	reader.onload = function() {
-		let dataURL = reader.result;
-		$('#selected-image').attr('src', dataURL);
-		$('#prediction-list').empty();
-	};
-	let file = $('#image-selector').prop('files')[0];
-	reader.readAsDataURL(file);
-	var titleBig = document.getElementById('image-set');
-	titleBig.innerHTML = 'Wybrano obraz';
-	var titleSmall = document.getElementById('image-filename');
-	titleSmall.innerHTML = 'Nazwa pliku: ' + file.name;
-});
-
-$('#model-selector').change(function() {
-	loadModel($('#model-selector').val());
-});
-
-let model;
-async function loadModel(name) {
+async function loadModel() {
 	$('#model-loader').show();
 	model = undefined;
-	// model = await tf.loadModel(`http://136.243.117.158:3001/tfjs-models/${name}/model.json`);
-	model = await tf.loadModel(`http://localhost:3001/tfjs-models/${name}/model.json`);
+	// model = await tf.loadModel(`http://136.243.117.158:3001/tfjs-models/MobileNet/model.json`);
 	model = await tf.loadModel(`http://localhost:3001/tfjs-models/MobileNet/model.json`);
 	$('#model-loader').hide();
+	document.getElementById('predict-button').disabled = true;
 }
 
-$('#predict-button').click(function() {
-	runImageRecognition();
-});
-
-function preprocessImage(image, modelName) {
+function preprocessImage(image) {
 	let tensor = tf.fromPixels(image).resizeNearestNeighbor([ 224, 224 ]).toFloat();
-
-	if (modelName === undefined) {
-		return tensor.expandDims();
-	} else if (modelName === 'VGG19') {
-		let meanImageNetRGB = tf.tensor1d([ 123.68, 116.779, 103.939 ]);
-		return tensor.sub(meanImageNetRGB).reverse(2).expandDims();
-	} else if (modelName === 'MobileNet') {
-		let offset = tf.scalar(127.5);
-		return tensor.sub(offset).div(offset).expandDims();
-	} else {
-		throw new Error('Unknown model name');
-	}
+	let offset = tf.scalar(127.5);
+	return tensor.sub(offset).div(offset).expandDims();
 }
 
 async function runImageRecognition() {
 	$('#pred-loader').show();
 	let image = $('#selected-image').get(0);
-	let modelName = $('#model-selector').val();
-	modelName = 'MobileNet';
-	let tensor = preprocessImage(image, modelName);
+	let tensor = preprocessImage(image);
 	var m = model;
 	let predictions = await model.predict(tensor).data();
 	let top5 = Array.from(predictions)
@@ -124,6 +88,37 @@ function showResults(results) {
 	percent5.innerHTML = results[4].percentage;
 	$('#results-set').show();
 }
+
+let model;
+loadModel();
+
+$('#image-selector').change(function() {
+	let reader = new FileReader();
+	reader.onload = function() {
+		let dataURL = reader.result;
+		$('#selected-image').attr('src', dataURL);
+	};
+	let file = $('#image-selector').prop('files')[0];
+	reader.readAsDataURL(file);
+	var titleBig = document.getElementById('image-set');
+	titleBig.innerHTML = 'Wybrano obraz';
+	var titleSmall = document.getElementById('image-filename');
+	titleSmall.innerHTML = 'Nazwa pliku: ' + file.name;
+	document.getElementById('predict-button').disabled = false;
+});
+
+$('#predict-button').click(function() {
+	runImageRecognition();
+});
+
+$('#reset-button').click(function() {
+	document.getElementById('image-selector').value = '';
+	document.getElementById('image-set').innerHTML = 'Brak wybranego obrazu do rozpoznania';
+	document.getElementById('image-filename').innerHTML = '';
+	$('#selected-image').attr('src', 'ui/images/empty.jpeg');
+	document.getElementById('predict-button').disabled = true;
+	$('#results-set').hide();
+});
 
 // ---------------------------------------------------------------------
 // STARA WERSJA
