@@ -18,7 +18,6 @@ function preprocessImage(image) {
 }
 
 async function runImageRecognition() {
-	$('#pred-loader').show();
 	let image = $('#selected-image').get(0);
 	let tensor = preprocessImage(image);
 	var m = model;
@@ -108,6 +107,7 @@ $('#image-selector').change(function() {
 });
 
 $('#predict-button').click(function() {
+	$('#pred-loader').show();
 	runImageRecognition();
 });
 
