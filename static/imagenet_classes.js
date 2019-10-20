@@ -593,7 +593,7 @@ const IMAGENET_CLASSES = {
 	568: 'fur coat',
 	569: 'garbage truck, dustcart',
 	570: 'gasmask, respirator, gas helmet',
-	571: 'gas pump, gasoline pump, petrol pump, island dispenser',
+	571: 'dystrybutor benzyny',
 	572: 'goblet',
 	573: 'go-kart',
 	574: 'golf ball',
