@@ -753,7 +753,7 @@ const IMAGENET_CLASSES = {
 	728: 'plastic bag',
 	729: 'plate rack',
 	730: 'plow, plough',
-	731: "plunger, plumber's helper",
+	731: 'przepychacz sanitarny (do zlewu)',
 	732: 'Polaroid camera, Polaroid Land camera',
 	733: 'pole',
 	734: 'police van, police wagon, paddy wagon, patrol wagon, wagon, black ' + 'Maria',
