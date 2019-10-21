@@ -14,6 +14,9 @@
         <link rel="stylesheet" href="ui/css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="ui/css/lightcase.min.css" type="text/css">
         <link rel="stylesheet" href="ui/css/style.css" type="text/css">
+         <!-- Charts -->
+         <script src="chart/Chart.min.js"></script>
+         <script src="chart/utils.js"></script>
     </head>
     <body>
         <!-- Preloader -->
@@ -81,7 +84,8 @@
 
                             <!-- Content -->
                             <div class="container">
-                                <h3 style="text-align: center; margin-top: 30%;">W przygotowaniu</h3>
+                                <h3">W przygotowaniu</h3">
+                                <canvas id="canvas"></canvas>
 
                             </div>
                             <!-- / Content -->
@@ -109,5 +113,10 @@
         <script src="ui/js/wow.min.js"></script>  
         <!-- Main Script -->
         <script src="ui/js/script.js"></script>
+        <!-- TensorFlow.js CDN -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+        <script src="equation_predict.js"></script>
     </body>
 </html>
