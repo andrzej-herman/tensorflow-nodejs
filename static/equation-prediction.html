@@ -56,7 +56,19 @@
                 </div>
             </header>
             <!-- / Left Navigation -->
-
+            <style>
+                #canvas {
+                    position: absolute;
+                    top:0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin:auto;
+                    height: 400px;
+                    width: 500px;
+                    margin-top: 20%;
+                }
+            </style>
             <!-- Mobile Navigation -->
             <div class="responsive-header">
                 <div class="responsive-header-name">
@@ -84,7 +96,7 @@
 
                             <!-- Content -->
                             <div class="container">
-                                <h3">W przygotowaniu</h3">
+                                <!-- <h3">W przygotowaniu</h3"> -->
                                 <canvas id="canvas"></canvas>
 
                             </div>
@@ -116,7 +128,7 @@
         <!-- TensorFlow.js CDN -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script> -->
         <script src="equation_predict.js"></script>
     </body>
 </html>
