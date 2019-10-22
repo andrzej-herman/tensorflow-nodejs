@@ -1,14 +1,14 @@
 let xs = [];
 let ys = [];
 
-function setup() {
-	var canv = document.getElementById('canvas');
-	canv.style.width = 800;
-	canv.style.height = 800;
-	canv.style.backgroundColor = '#000000';
-}
+// function setup() {
+// 	var canv = document.getElementById('canvas');
+// 	canv.style.width = 800;
+// 	canv.style.height = 800;
+// 	canv.style.backgroundColor = '#000000';
+// }
 
-setup();
+// setup();
 
 // ---------------------------------------------------------------------------------------------------------
 // OLD PIECE OF CODE
