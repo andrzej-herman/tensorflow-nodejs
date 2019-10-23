@@ -1,133 +1,115 @@
-var canvas;
 let xs = [];
 let ys = [];
 
-/*
-function getOffset(el) {
-  const rect = el.getBoundingClientRect();
-  return {
-    left: rect.left + window.scrollX,
-    top: rect.top + window.scrollY
-  };
-}
-Using this we can call
-
-getOffset(element).left
-*/
-
-document.addEventListener('click', onMouseClick, true);
-createCanvas();
-
-// => funkcja rysująca canvas
-// => ustawiam jego rozmiar, kształt itd ...
-function createCanvas() {
-	canvas = document.getElementById('canvas');
+function setup() {
+	var cnv = createCanvas(500, 500);
+	cnv.parent('canvas-holder');
+	background(21, 105, 121);
+	drawLine();
 }
 
-function onMouseClick(e) {
-	SetPixel(e.clientX, e.clientY);
+function draw() {}
+
+function drawLine() {
+	background(21, 105, 121);
+	stroke(255, 255, 255);
+	line(10, 400, 10, 200);
 }
 
-// => funkcja rysująca punkt
-function SetPixel(x, y) {
-	if (checkIfDraw(x, y)) {
-		var c = document.getElementById('canvas');
-		var dimleft = parseInt(c.getBoundingClientRect().left);
-		var dimtop = canvas.getBoundingClientRect().top;
-		var xpos = x - dimleft;
-		var ypos = y - dimtop;
-		var ctx = canvas.getContext('2d');
-		ctx.fillStyle = '#fff';
-		ctx.beginPath();
-		//ctx.arc(xpos, ypos, 1, 0, Math.PI * 2, true);
-		ctx.closePath();
-		//ctx.fill();
-		ctx.fillRect(xpos, ypos, 2, 2);
-	}
-}
+function mousePressed() {}
 
-// => sprawdzanie czy kursor myszy jest w polu rysowania
-function checkIfDraw(posX, posY) {
-	var dims = canvas.getBoundingClientRect();
-	if (posX > dims.left && posX < dims.right && posY > dims.top && posY < dims.bottom) return true;
-	else return false;
-}
+// Stary kod
+// --------------------------------------------------------------------
+// var X = [];
+// var Y = [];
+// var M, B;
 
-// ---------------------------------------------------------------------------------------------------------
-// OLD PIECE OF CODE
+// const m = tf.variable(tf.scalar(Math.random()));
+// const b = tf.variable(tf.scalar(Math.random()));
 
-// TensorFlow.js - test biblioteki
-// const t1 = tf.tensor([ [ 1, 2, 8, 10 ], [ 3, 4, 2, 3 ] ]);
-// t1.print();
+// const learningRate = 0.5;
+// const optimizer = tf.train.sgd(learningRate);
 
-/**
- * Get the car data reduced to just the variables we are interested
- * and cleaned of missing data.
- */
-// var color = Chart.helpers.color;
-// async function getData() {
-// 	const carsDataReq = await fetch('https://storage.googleapis.com/tfjs-tutorials/carsData.json');
-// 	const carsData = await carsDataReq.json();
-// 	const cleaned = carsData
-// 		.map((car) => ({
-// 			mpg: car.Miles_per_Gallon,
-// 			horsepower: car.Horsepower
-// 		}))
-// 		.filter((car) => car.mpg != null && car.horsepower != null);
-
-// 	return cleaned;
+// function setup() {
+// 	var cnv = createCanvas(900, 500);
+// 	cnv.parent('canvas-holder');
+// 	background(21, 105, 121);
 // }
 
-// function generateData() {
-// 	// const data = getData();
-// 	// const values = data.map((d) => ({
-// 	// 	x: d.horsepower,
-// 	// 	y: d.mpg
-// 	// }));
-// 	// var data = [];
-// 	// for (var i = 0; i < 7; i++) {
-// 	// 	data.push({
-// 	// 		x: randomScalingFactor(),
-// 	// 		y: randomScalingFactor()
-// 	// 	});
-// 	// }
-// 	// return values;
+// function draw() {
+// 	background(21, 105, 121);
+// 	plotData();
+
+// 	if (X.length) {
+// 		tf.tidy(() => {
+// 			const xs = tf.tensor(X, [ X.length, 1 ]);
+// 			const ys = tf.tensor(Y, [ Y.length, 1 ]);
+
+// 			train(xs, ys);
+
+// 			M = m.dataSync()[0];
+// 			B = b.dataSync()[0];
+// 		});
+// 		drawLine();
+// 		var res = document.getElementById('result');
+// 		res.innerHTML = 'f(x) = ' + M.toFixed(3).toString() + 'x + ' + B.toFixed(3).toString();
+// 	}
 // }
 
-// async function run() {
-// 	var dataDisplay = await getData();
-// 	const values = dataDisplay.map((d) => ({
-// 		x: d.horsepower,
-// 		y: d.mpg
-// 	}));
-
-// 	var scatterChartData = {
-// 		datasets: [
-// 			{
-// 				label: 'MOC / SPALANIE',
-// 				borderColor: window.chartColors.blue,
-// 				backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
-// 				data: values
-// 			}
-// 		]
-// 	};
-
-// 	displayChart(scatterChartData);
-// 	// More code will be added below
+// function predict(x) {
+// 	// y = m * x + b
+// 	return m.mul(x).add(b);
 // }
 
-// function displayChart(scatterChartData) {
-// 	var color = Chart.helpers.color;
-// 	var ctx = document.getElementById('canvas').getContext('2d');
-// 	window.myScatter = Chart.Scatter(ctx, {
-// 		data: scatterChartData,
-// 		options: {
-// 			title: {
-// 				display: true,
-// 				text: ''
-// 			}
-// 		}
-// 	});
+// function loss(predictions, labels) {
+// 	// Mean Squared Error
+// 	return predictions.sub(labels).square().mean();
 // }
 
-// document.addEventListener('DOMContentLoaded', run);
+// function train(xs, ys, numIterations = 1) {
+// 	for (let iter = 0; iter < numIterations; iter++) {
+// 		optimizer.minimize(() => loss(predict(xs), ys));
+// 	}
+// }
+
+// function h(x) {
+// 	return B + M * x;
+// }
+
+// function drawLine() {
+// 	let x1 = 0.0;
+// 	let y1 = h(x1);
+// 	let x2 = 1.0;
+// 	let y2 = h(x2);
+
+// 	let denormX1 = Math.floor(map(x1, 0, 1, 0, width));
+// 	let denormY1 = Math.floor(map(y1, 0, 1, 0, height));
+// 	let denormX2 = Math.floor(map(x2, 0, 1, 0, width));
+// 	let denormY2 = Math.floor(map(y2, 0, 1, 0, height));
+
+// 	stroke(255, 240, 0);
+// 	line(denormX1, denormY1, denormX2, denormY2);
+// }
+
+// function mousePressed() {
+// 	let normX = map(mouseX, 0, width, 0, 1);
+// 	let normY = map(mouseY, 0, height, 1, 0);
+
+// 	X.push(normX);
+// 	Y.push(normY);
+// }
+
+// function plotData() {
+// 	noStroke();
+// 	fill(255);
+// 	for (let i = 0; i < X.length; i++) {
+// 		let denormX = Math.floor(map(X[i], 0, 1, 0, width));
+// 		let denormY = Math.floor(map(Y[i], 0, 1, 0, height));
+// 		ellipse(denormX, denormY, 6);
+// 	}
+// 	noFill();
+// }
+
+// function clearData() {
+// 	location.reload();
+// }
