@@ -1,14 +1,42 @@
+var canvas;
 let xs = [];
 let ys = [];
 
-// function setup() {
-// 	var canv = document.getElementById('canvas');
-// 	canv.style.width = 800;
-// 	canv.style.height = 800;
-// 	canv.style.backgroundColor = '#000000';
-// }
+document.addEventListener('click', onMouseClick, true);
+createCanvas();
 
-// setup();
+// => funkcja rysująca canvas
+// => ustawiam jego rozmiar, kształt itd ...
+function createCanvas() {
+	canvas = document.getElementById('canvas');
+}
+
+function onMouseClick(e) {
+	SetPixel(e.clientX, e.clientY);
+}
+
+// => funkcja rysująca punkt
+function SetPixel(x, y) {
+	if (checkIfDraw(x, y)) {
+		var dimleft = parseInt(canvas.getBoundingClientRect().left);
+		var dimtop = canvas.getBoundingClientRect().top;
+		var xpos = x - dimleft;
+		var ypos = y - dimtop;
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = '#fff';
+		ctx.beginPath();
+		ctx.arc(xpos, ypos, 1, 0, Math.PI * 2, true);
+		ctx.closePath();
+		ctx.fill();
+	}
+}
+
+// => sprawdzanie czy kursor myszy jest w polu rysowania
+function checkIfDraw(posX, posY) {
+	var dims = canvas.getBoundingClientRect();
+	if (posX > dims.left && posX < dims.right && posY > dims.top && posY < dims.bottom) return true;
+	else return false;
+}
 
 // ---------------------------------------------------------------------------------------------------------
 // OLD PIECE OF CODE
