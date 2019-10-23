@@ -2,6 +2,19 @@ var canvas;
 let xs = [];
 let ys = [];
 
+/*
+function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  };
+}
+Using this we can call
+
+getOffset(element).left
+*/
+
 document.addEventListener('click', onMouseClick, true);
 createCanvas();
 
@@ -18,16 +31,18 @@ function onMouseClick(e) {
 // => funkcja rysująca punkt
 function SetPixel(x, y) {
 	if (checkIfDraw(x, y)) {
-		var dimleft = parseInt(canvas.getBoundingClientRect().left);
+		var c = document.getElementById('canvas');
+		var dimleft = parseInt(c.getBoundingClientRect().left);
 		var dimtop = canvas.getBoundingClientRect().top;
 		var xpos = x - dimleft;
 		var ypos = y - dimtop;
 		var ctx = canvas.getContext('2d');
 		ctx.fillStyle = '#fff';
 		ctx.beginPath();
-		ctx.arc(xpos, ypos, 1, 0, Math.PI * 2, true);
+		//ctx.arc(xpos, ypos, 1, 0, Math.PI * 2, true);
 		ctx.closePath();
-		ctx.fill();
+		//ctx.fill();
+		ctx.fillRect(xpos, ypos, 2, 2);
 	}
 }
 
