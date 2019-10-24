@@ -1,3 +1,9 @@
+// element canvas do tworzenia układu współrzędnych
+let cnv;
+
+// input do wprowadzania wartości learningRate
+let lrInput = document.getElementById('lrate');
+
 // tablice przechowujące argumenty x (xs) oraz wartości funkcji postaci f(x) = ax + b (ys)
 let x_vals = [];
 let y_vals = [];
@@ -8,22 +14,30 @@ let a, b;
 
 // => learningRate sieci neuronowej
 // to współczynnik mówiący mniej więcej jak szybko nowe wytrenowane wartośc zastępują poprzednie
-// na początek ustawiam na 0.2
-const lR = 0.2;
+let lR = 0.5;
 
-// => optymizer NN
-// czyli jaki algorytm zostanie użyty do trenowania sieci aby wartość funkcji straty była jak najmniejsza
-// wybieram algorytm stochastycznego spadku gradientu (SGD - stochastic gradient descent)
-// jest on dostepny w TensorFlow, przekazujemy do funkcji parametr learningRate
-// trenowanie polega na takim dobraniu współczynników a i b aby zminimalizować wartość funkcji straty
-// innymi słowy linia powstała w wyniku treningu będzie możliwie najbliżej wszystkich punktów z zestawu danych
-const optimizer = tf.train.sgd(lR);
+// sprawdzanie czy Użytkownik kliknął w obrębie układu współrzędnych
+function checkGoodClick() {
+	let result = false;
+	// miejsca kliknięć
+	var mx = cnv.position().x + mouseX;
+	var my = cnv.position().y + mouseY;
+	// narożniki układu współrzędnych
+	var left = cnv.position().x;
+	var right = cnv.position().x + 600;
+	var top = cnv.position().y;
+	var bottom = cnv.position().y + 600;
+	if (mx > left && mx < right && my > top && my < bottom) result = true;
+
+	return result;
+}
 
 // start programu
 function setup() {
+	lrInput.value = lR;
 	// => rysuję układ współrzędnych wraz z osiami
 	// => tworzę element canvas
-	var cnv = createCanvas(600, 600);
+	cnv = createCanvas(600, 600);
 	cnv.parent('canvas-holder');
 	background(21, 105, 121);
 	// => rysuję osie
@@ -68,19 +82,44 @@ function predict(x) {
 // => zdarfzenie na klikniecie myszą
 // => rysuję punkt na układzie i dodaję go do tablic z argumentami i wartościami funkcji
 function mousePressed() {
-	let x = map(mouseX, 0, width, 0, 1);
-	let y = map(mouseY, 0, height, 1, 0);
-	x_vals.push(x);
-	y_vals.push(y);
+	if (checkGoodClick()) {
+		var lRateVal = parseFloat(lrInput.value);
+		if (isNaN(lRateVal) || lRateVal < 0 || lRateVal > 1) {
+			alert(
+				'Proszę wprowadzić prawidłową wartość współczynnika learning rate. należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.'
+			);
+			return;
+		} else {
+			lR = lRateVal;
+		}
+		let x = map(mouseX, 0, width, 0, 1);
+		let y = map(mouseY, 0, height, 1, 0);
+		x_vals.push(x);
+		y_vals.push(y);
+	}
 }
 
 // => funkcja rysująca punkty oraz przewidzianą przez NN linię (wykres funkcji postaci f(x) = ax + b
 // gdzie a i b zostały ustalone (wytrenowane) przez optimizer
 function draw() {
-	if (x_vals.length > 0) {
-		const ys = tf.tensor1d(y_vals);
-		optimizer.minimize(() => loss(predict(x_vals), ys));
-	}
+	// => optymizer NN
+	// czyli jaki algorytm zostanie użyty do trenowania sieci aby wartość funkcji straty była jak najmniejsza
+	// wybieram algorytm stochastycznego spadku gradientu (SGD - stochastic gradient descent)
+	// jest on dostepny w TensorFlow, przekazujemy do funkcji parametr learningRate
+	// trenowanie polega na takim dobraniu współczynników a i b aby zminimalizować wartość funkcji straty
+	// innymi słowy linia powstała w wyniku treningu będzie możliwie najbliżej wszystkich punktów z zestawu danych
+	const optimizer = tf.train.sgd(lR);
+	// => ponieważ podczas trenowania sieci TensorFlow tworzy za każem razy nowy tensor
+	// (a dokładniej: funkcje loss i predict tworzą wiele tensorów)
+	// istnieje konieczność zwolnienia ich z pamięci po wykonanym procesie
+	// służy do tego metoda TF tf.tidy()
+	tf.tidy(() => {
+		if (x_vals.length > 0) {
+			const ys = tf.tensor1d(y_vals);
+			optimizer.minimize(() => loss(predict(x_vals), ys));
+		}
+	});
+
 	background(21, 105, 121);
 	// osie
 	drawAxis();
@@ -94,24 +133,27 @@ function draw() {
 	}
 	// wykres
 	drawLine();
+	// wyświetlanie równania
+	displayEquation();
 }
 
 // => funkcja rysująca przewidywany wykres (linię postaci ax + b)
 function drawLine() {
-	const xs = [ 0, 1 ];
-	const ys = predict(xs);
-	let x1 = map(xs[0], 0, 1, 0, width);
-	let x2 = map(xs[1], 0, 1, 0, width);
+	const lineX = [ 0, 1 ];
+	const ys = tf.tidy(() => predict(lineX));
 	// => ponieważ ys jest tensorem, muszę wyciągnąć z niego wartości
 	// służy do tego metoda TF dataSync()
 	let lineY = ys.dataSync();
+	ys.dispose();
+
+	let x1 = map(lineX[0], 0, 1, 0, width);
+	let x2 = map(lineX[1], 0, 1, 0, width);
 	let y1 = map(lineY[0], 0, 1, height, 0);
 	let y2 = map(lineY[1], 0, 1, height, 0);
+
 	stroke(255, 240, 0);
 	strokeWeight(2);
 	line(x1, y1, x2, y2);
-	// wyświetlanie równania
-	displayEquation();
 }
 
 // => rysowanie osi układu współrzędnych
@@ -127,6 +169,9 @@ function drawAxis() {
 	text('1', 25, 50, 80, 90);
 	text('x', 570, 550, 120, 120);
 	text('1', 550, 520, 80, 90);
+	textSize(16);
+	text('0.5', 20, 300, 80, 90);
+	text('0.5', 300, 570, 80, 90);
 }
 
 // => wyswietlanie aktualnej postaci równania

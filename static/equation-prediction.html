@@ -47,7 +47,7 @@
                             <li><a href="index.html"><i class="fas fa-play-circle"></i> Start</a></li>
                             <li><a href="project-description.html"><i class="fas fa-sticky-note"></i> Opis projektu</a></li>
                             <li><a href="image-recognition.html"><i class="fas fa-images"></i> Rozpoznawanie obrazów</a></li>
-                            <li><a class="active" href="#"><i class="fas fa-chart-line"></i> Predykcja wykresu funkcji</a></li>
+                            <li><a class="active" href="#"><i class="fas fa-chart-line"></i> Regresja liniowa</a></li>
                             <li><a href="https://github.com/andrzej-herman/projekt_do_pracy_magisterskiej" target="_blank"><i class="fas fa-code-branch"></i> Kod źródłowy projektu</a></li>
                         </ul> 
                         <!-- /Main menu -->
@@ -75,17 +75,23 @@
                             <div class="section-title">
                                 <div class="main-title">
                                     <div class="title-main-page">
-                                        <h4>Predykcja wykresu funkcji</h4>
-                                        <p style="text-transform: none;">Równanie postaci f(x) = ax<sup>3</sup> + bx<sup>2</sup> + cx + d</p>
+                                        <h4>Regresja liniowa</h4>
+                                        <!-- <p style="text-transform: none;">Równanie postaci f(x) = ax<sup>3</sup> + bx<sup>2</sup> + cx + d</p> -->
+                                        <p style="text-transform: none;">Równanie liniowe postaci f(x) = ax + b</p>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Content -->
                             <div class="container" style="text-align: center;">
-                                <h2" style="font-size: 16px">Predykcja wykresu funkcji liniowej postaci f(x) = ax + b</h2">
-                                <p id="result" style="margin-top: 10px; font-size: 22px; color:#1b9ae3">f(x) = ax + b</p>
-                                <div id='canvas-holder' style="text-align: center; margin-top: 50px;">
+                                <h4>Aktualna postać funkcji liniowej f(x) = ax + b</h4>
+                                <p id="result" style="margin-top: 20px; margin-bottom: 20px; font-size: 28px; color:#1b9ae3">f(x) = ax + b</p>
+                                <!-- <div style="text-align: left;"> -->
+                                    <p>Wartość współczynnika learning rate:</p>
+                                    <input style="font-size: 18px; width: 30%;" name="lrate" id="lrate" type="text" placeholder="wpisz wartość z przedziału 0 - 1" required autocomplete="off">
+                                <!-- </div> -->
+                                
+                                <div id='canvas-holder' style="text-align: center; margin-top: 20px;">
 
                                 </div>
                                 <button id="reset-button" onclick="clearData()" class="btn btn-danger" style="margin-top: 20px; margin-bottom: 30px; border-radius: 20px; width:300px">Wyczyść dane</button>
