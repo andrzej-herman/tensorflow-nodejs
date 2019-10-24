@@ -96,6 +96,8 @@ function mousePressed() {
 		let y = map(mouseY, 0, height, 1, 0);
 		x_vals.push(x);
 		y_vals.push(y);
+		// wyświetlanie tabeli punktów
+		updateTable();
 	}
 }
 
@@ -114,9 +116,9 @@ function draw() {
 	// istnieje konieczność zwolnienia ich z pamięci po wykonanym procesie
 	// służy do tego metoda TF tf.tidy()
 	tf.tidy(() => {
-		if (x_vals.length > 0) {
+		if (x_vals.length > 1) {
 			const ys = tf.tensor1d(y_vals);
-			optimizer.minimize(() => loss(predict(x_vals), ys));
+			optimizer.minimize(() => loss(predict(x_vals), ys));			
 		}
 	});
 
@@ -133,9 +135,28 @@ function draw() {
 	}
 	// wykres
 	drawLine();
-	// wyświetlanie równania
+	// wyświetlanie równania`
 	displayEquation();
 }
+
+function updateTable() {
+	var table = document.getElementById('positions');
+	table.innerHTML = '';
+	var content = '<thead><tr><th>#</th><th>x</th><th>f(x)</th></tr></thead><tbody>';
+	for (let idx = 0; idx < x_vals.length; idx++) {
+		content += '<tr><td>';
+		content += (idx+1).toString();
+		content += '</td><td>';
+		content += (x_vals[idx] - 0.8333).toFixed(4).toString();
+		content += '</td><td>';
+		content += (y_vals[idx] - 0.8333).toFixed(4).toString();
+		content += '</td></tr>';
+	}
+
+	content += '</tbody>';
+	table.innerHTML = content;
+}
+
 
 // => funkcja rysująca przewidywany wykres (linię postaci ax + b)
 function drawLine() {
@@ -184,6 +205,22 @@ function displayEquation() {
 	res.innerHTML = 'f(x) = ' + da + db;
 }
 
+// => czyszczenie danych
 function clearData() {
 	location.reload();
 }
+
+// => ustawianie wartości learning rate
+function setLr() {
+	var lRateVal = parseFloat(lrInput.value);
+		if (isNaN(lRateVal) || lRateVal < 0 || lRateVal > 1) {
+			alert(
+				'Proszę wprowadzić prawidłową wartość współczynnika learning rate.' + 
+				'należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.'
+			);
+			return;
+		} else {
+			lR = lRateVal;
+		}
+}
+
