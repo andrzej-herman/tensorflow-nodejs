@@ -1,3 +1,8 @@
+// => błąd nieprawidłowej wartości learningRate
+const lrError = 'Proszę wprowadzić prawidłową wartość współczynnika learning rate.' + 
+'należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.'
+
+
 // element canvas do tworzenia układu współrzędnych
 let cnv;
 
@@ -85,9 +90,7 @@ function mousePressed() {
 	if (checkGoodClick()) {
 		var lRateVal = parseFloat(lrInput.value);
 		if (isNaN(lRateVal) || lRateVal < 0 || lRateVal > 1) {
-			alert(
-				'Proszę wprowadzić prawidłową wartość współczynnika learning rate. należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.'
-			);
+			alert(lrError);
 			return;
 		} else {
 			lR = lRateVal;
@@ -214,10 +217,7 @@ function clearData() {
 function setLr() {
 	var lRateVal = parseFloat(lrInput.value);
 		if (isNaN(lRateVal) || lRateVal < 0 || lRateVal > 1) {
-			alert(
-				'Proszę wprowadzić prawidłową wartość współczynnika learning rate.' + 
-				'należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.'
-			);
+			alert(lrError);
 			return;
 		} else {
 			lR = lRateVal;
