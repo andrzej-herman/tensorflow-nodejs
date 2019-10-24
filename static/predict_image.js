@@ -2,13 +2,14 @@
 // const t1 = tf.tensor([ [ 1, 2, 8 ], [ 3, 4, 2 ] ]);
 // t1.print();
 
+// => asynchroniczne ładowanie pretrenowanego modelu
 async function loadModel() {
 	$('#model-loader').show();
 	model = undefined;
 	// => ładowanie modelu MobileNet z pliku model.json zawierającego wskaźniki do plików wag
-	// => model na serwerze
+	// => model na serwerze (publikacja)
 	model = await tf.loadModel(`http://136.243.117.158:3001/tfjs-models/MobileNet/model.json`);
-	// => model lokalnie
+	// => model lokalnie (do testu)
 	// => model = await tf.loadModel(`http://localhost:3001/tfjs-models/MobileNet/model.json`);
 	$('#model-loader').hide();
 	document.getElementById('predict-button').disabled = true;
