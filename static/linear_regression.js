@@ -1,6 +1,7 @@
 // => błąd nieprawidłowej wartości learningRate
-const lrError = 'Proszę wprowadzić prawidłową wartość współczynnika learning rate.' + 
-'należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.'
+const lrError =
+	'Proszę wprowadzić prawidłową wartość współczynnika learning rate.' +
+	'należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.';
 
 // => element canvas do tworzenia układu współrzędnych
 let cnv;
@@ -103,9 +104,9 @@ function mousePressed() {
 		x_vals.push(x);
 		y_vals.push(y);
 
-		// mapowanie n potrzeby wywietlania tabelki punktów
+		// mapowanie na potrzeby wywietlania tabelki punktów
 		let xd = map(mouseX - 50, 0, width, 0, 1);
-		let yd = map(mouseY - 50, 0, height, 1, 0);
+		let yd = map(mouseY + 50, 0, height, 1, 0);
 
 		xd_vals.push(xd);
 		yd_vals.push(yd);
@@ -132,7 +133,7 @@ function draw() {
 	tf.tidy(() => {
 		if (x_vals.length > 1) {
 			const ys = tf.tensor1d(y_vals);
-			optimizer.minimize(() => loss(predict(x_vals), ys));			
+			optimizer.minimize(() => loss(predict(x_vals), ys));
 		}
 	});
 
@@ -154,13 +155,12 @@ function draw() {
 }
 
 function updateTable() {
-
 	var table = document.getElementById('positions');
 	table.innerHTML = '';
 	var content = '<thead><tr><th>#</th><th>x</th><th>f(x)</th></tr></thead><tbody>';
 	for (let idx = 0; idx < xd_vals.length; idx++) {
 		content += '<tr><td>';
-		content += (idx+1).toString();
+		content += (idx + 1).toString();
 		content += '</td><td>';
 		content += xd_vals[idx].toFixed(2).toString();
 		content += '</td><td>';
@@ -171,7 +171,6 @@ function updateTable() {
 	content += '</tbody>';
 	table.innerHTML = content;
 }
-
 
 // => funkcja rysująca przewidywany wykres (linię postaci ax + b)
 function drawLine() {
@@ -206,8 +205,8 @@ function drawAxis() {
 	text('x', 570, 550, 120, 120);
 	text('1', 550, 520, 80, 90);
 	textSize(16);
-	text('0.5', 20, 300, 80, 90);
-	text('0.5', 300, 570, 80, 90);
+	text('0.5', 20, 250, 80, 90);
+	text('0.5', 350, 570, 80, 90);
 }
 
 // => wyswietlanie aktualnej postaci równania
@@ -228,11 +227,10 @@ function clearData() {
 // => ustawianie wartości learning rate
 function setLr() {
 	var lRateVal = parseFloat(lrInput.value);
-		if (isNaN(lRateVal) || lRateVal < 0 || lRateVal > 1) {
-			alert(lrError);
-			return;
-		} else {
-			lR = lRateVal;
-		}
+	if (isNaN(lRateVal) || lRateVal < 0 || lRateVal > 1) {
+		alert(lrError);
+		return;
+	} else {
+		lR = lRateVal;
+	}
 }
-
