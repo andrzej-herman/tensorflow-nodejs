@@ -2,16 +2,19 @@
 const lrError = 'Proszę wprowadzić prawidłową wartość współczynnika learning rate.' + 
 'należy uzyć kropki, a nie przecinka. Wartość musi być w zakresie od 0 do 1.'
 
-
-// element canvas do tworzenia układu współrzędnych
+// => element canvas do tworzenia układu współrzędnych
 let cnv;
 
-// input do wprowadzania wartości learningRate
+// => input do wprowadzania wartości learningRate
 let lrInput = document.getElementById('lrate');
 
-// tablice przechowujące argumenty x (xs) oraz wartości funkcji postaci f(x) = ax + b (ys)
+// => tablice przechowujące argumenty x (xs) oraz wartości funkcji postaci f(x) = ax + b (ys)
 let x_vals = [];
 let y_vals = [];
+
+// => tablice na potrzeby wyświetlania tabeli punktów, skorygowane o przesunięcie osi
+let xd_vals = [];
+let yd_vals = [];
 
 // => wagi a i b
 // => są to współczynniki a i b funkcji liniowej postaci f(x) = ax + b
@@ -99,6 +102,14 @@ function mousePressed() {
 		let y = map(mouseY, 0, height, 1, 0);
 		x_vals.push(x);
 		y_vals.push(y);
+
+		// mapowanie n potrzeby wywietlania tabelki punktów
+		let xd = map(mouseX - 50, 0, width, 0, 1);
+		let yd = map(mouseY - 50, 0, height, 1, 0);
+
+		xd_vals.push(xd);
+		yd_vals.push(yd);
+
 		// wyświetlanie tabeli punktów
 		updateTable();
 	}
@@ -143,16 +154,17 @@ function draw() {
 }
 
 function updateTable() {
+
 	var table = document.getElementById('positions');
 	table.innerHTML = '';
 	var content = '<thead><tr><th>#</th><th>x</th><th>f(x)</th></tr></thead><tbody>';
-	for (let idx = 0; idx < x_vals.length; idx++) {
+	for (let idx = 0; idx < xd_vals.length; idx++) {
 		content += '<tr><td>';
 		content += (idx+1).toString();
 		content += '</td><td>';
-		content += (x_vals[idx] - 0.8333).toFixed(4).toString();
+		content += xd_vals[idx].toFixed(2).toString();
 		content += '</td><td>';
-		content += (y_vals[idx] - 0.8333).toFixed(4).toString();
+		content += yd_vals[idx].toFixed(2).toString();
 		content += '</td></tr>';
 	}
 

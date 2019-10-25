@@ -89,29 +89,25 @@
                                     <p>Wartość współczynnika learning rate:</p>
                                     <input style="font-size: 18px; width: 30%;" name="lrate" id="lrate" type="text" placeholder="wpisz wartość z przedziału 0 - 1" required autocomplete="off" onchange="setLr()">
                                     <div id='canvas-holder' style="text-align: center; margin-top: 20px;"></div>
-
+                                    <p style="margin-top: 20px; font-size: 18px;">Punkty danych</p>
+                                    <hr>
                                     <div id="table-holder" style="margin-top: 50px; display: flex;
                                     justify-content: center">
-                                            <table class="table" style="width: 600px;  align-self: center;" id="positions">
-                                                    <thead>
-                                                      <tr>
-                                                        <th>#</th>
-                                                        <th>x</th>
-                                                        <th>f(x)</th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                  
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                      
-   
-                                
+                                        <table class="table" style="width: 600px;  align-self: center;" id="positions">
+                                            <thead>
+                                                <tr>
+                                                <th>#</th>
+                                                <th>x</th>
+                                                <th>f(x)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>            
                                 <button id="reset-button" onclick="clearData()" class="btn btn-danger" style="margin-top: 20px; margin-bottom: 30px; border-radius: 20px; width:300px">Wyczyść dane</button>
                             </div>
                             <!-- / Content -->
-
                         </div>
                     </section>
                     <!-- / Title -->
