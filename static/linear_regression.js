@@ -122,7 +122,7 @@ function mousePressed() {
 // => funkcja rysująca punkty oraz przewidzianą przez NN linię (wykres funkcji postaci f(x) = ax + b
 // gdzie a i b zostały ustalone (wytrenowane) przez optimizer
 function draw() {
-  // => optymizer NN
+  // => optimizer NN
   // czyli jaki algorytm zostanie użyty do trenowania sieci aby wartość funkcji straty była jak najmniejsza
   // wybieram algorytm stochastycznego spadku gradientu (SGD - stochastic gradient descent)
   // jest on dostepny w TensorFlow, przekazujemy do funkcji parametr learningRate
