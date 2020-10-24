@@ -1,3 +1,3 @@
-## Projekt wykorzystujący TensorFlow.js (część praktyczna pracy magisterskiej)
+## TensorFlow.js project
 
-Projekt wykorzystujący AI oparty na TensorFlow.js. Zrealizowany jako część praktyczna mojej pracy magisterskiej pt: "Wpływ wybranych sposobów modyfikacji wag na efektywność działania jednokierunkowej sieci neuronowej" napisanej pod kierownictwem prof. Andrzeja Cadera.
+A project using AI based on TensorFlow.js. Realized as a practical part of my master's thesis entitled: "The impact of selected ways of modifying weights on the effectiveness of unidirectional neural network" written under the supervision of prof. Andrzej Cader.
